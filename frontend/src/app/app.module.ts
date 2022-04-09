@@ -19,8 +19,23 @@ import { ImagePipe } from './pipes/image.pipe';
 import { UserTypeDirective } from './directives/user-type.directive';
 import { FileInputComponent } from './ui/file-input/file-input.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AuthInterceptor } from './auth.interceptor';
+import { FacebookLoginProvider, SocialAuthServiceConfig } from 'angularx-social-login';
+import { environment } from '../environments/environment';
+
+const socialConfig: SocialAuthServiceConfig = {
+  autoLogin: false,
+  providers: [
+    {
+      id: FacebookLoginProvider.PROVIDER_ID,
+      provider: new FacebookLoginProvider(environment.fbAppId, {
+        scope: 'email,public_profile'
+      })
+    }
+  ]
+}
 
 @NgModule({
   declarations: [
@@ -48,7 +63,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatIconModule,
     MatListModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: 'SocialAuthServiceConfig', useValue: socialConfig },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

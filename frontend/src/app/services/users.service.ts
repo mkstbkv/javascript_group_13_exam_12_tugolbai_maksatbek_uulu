@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FacebookUserData, LoginUserData, RegisterUserData, User } from '../models/user.model';
 import { environment as env } from '../../environments/environment';
-import { FacebookUserData, LoginUserData, User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +9,24 @@ import { FacebookUserData, LoginUserData, User } from '../models/user.model';
 export class UsersService {
   constructor(private http: HttpClient) { }
 
-  login(userData: LoginUserData) {
-    return this.http.post<User>(env.apiUrl + '/users/sessions', userData);
+  registerUser(userData: RegisterUserData) {
+    const formData = new FormData();
+
+    Object.keys(userData).forEach(key => {
+      if (userData[key] !== null) {
+        formData.append(key, userData[key]);
+      }
+    });
+
+    return this.http.post<User>(env.apiUrl + '/users', formData);
   }
 
   loginWithFacebook(userData: FacebookUserData) {
     return this.http.post<User>(env.apiUrl + '/users/facebookLogin', userData);
+  }
+
+  login(userData: LoginUserData) {
+    return this.http.post<User>(env.apiUrl + '/users/sessions', userData);
   }
 
   logout() {
