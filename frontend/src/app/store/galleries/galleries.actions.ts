@@ -38,10 +38,9 @@ export const createGalleryFailure = createAction(
   props<{error: string}>()
 );
 
-
 export const deleteGalleryRequest = createAction(
   '[Galleries] Delete Request',
-  props<{id: string}>()
+  props<{id: string, userId: string}>()
 );
 export const deleteGallerySuccess = createAction(
   '[Galleries] Delete Success'

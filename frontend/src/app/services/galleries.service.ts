@@ -52,7 +52,7 @@ export class GalleriesService {
     return this.http.post(environment.apiUrl + '/galleries', formData);
   }
 
-  deleteGallery(id: string) {
-    return this.http.delete(environment.apiUrl + '/galleries/' + id)
+  deleteGallery(id: string, userId: string) {
+    return this.http.delete(environment.apiUrl + '/galleries/' + id, {body: {user: userId}})
   }
 }
