@@ -2,3 +2,11 @@ node_modules
 .idea
 public/uploads/*
 !public/uploads/.gitkeep
+!public/uploads/1.jpg
+!public/uploads/2.jpg
+!public/uploads/3.jpg
+!public/uploads/4.jpg
+!public/uploads/5.jpg
+!public/uploads/6.jpg
+!public/uploads/7.jpg
+!public/uploads/8.jpg
