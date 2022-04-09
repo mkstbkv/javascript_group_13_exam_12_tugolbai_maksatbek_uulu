@@ -1,3 +1,7 @@
+<div fxLayout="row" fxLayoutAlign="space-between flex-start">
+  <h1>{{ userOne.displayName }}'s gallery</h1>
+</div>
+
 <div class="error" *ngIf="error | async">
   {{ error | async }}
 </div>
@@ -21,9 +25,6 @@
         <mat-card-header>
           <mat-card-title>{{ gallery.title }}</mat-card-title>
         </mat-card-header>
-        <mat-card-actions>
-          By: <a [routerLink]="['galleries/', gallery.user._id]">{{ gallery.user.displayName }}</a>
-        </mat-card-actions>
       </mat-card>
     </div>
   </div>

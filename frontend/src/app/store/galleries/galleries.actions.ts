@@ -1,26 +1,15 @@
 import { createAction, props } from '@ngrx/store';
 import { Gallery, GalleryData } from '../../models/gallery.model';
 
-export const fetchGalleriesRequest = createAction('[Galleries] Fetch Request');
+export const fetchGalleriesRequest = createAction(
+  '[Galleries] Fetch Request',
+  props<{id: string}>()
+);
 export const fetchGalleriesSuccess = createAction(
   '[Galleries] Fetch Success',
   props<{galleries: Gallery[]}>()
 );
 export const fetchGalleriesFailure = createAction(
-  '[Galleries] Fetch Failure',
-  props<{error: string}>()
-);
-
-
-export const fetchUsersGalleriesRequest = createAction(
-  '[Galleries] Fetch Request',
-  props<{id: string}>()
-);
-export const fetchUsersGalleriesSuccess = createAction(
-  '[Galleries] Fetch Success',
-  props<{galleries: Gallery[]}>()
-);
-export const fetchUsersGalleriesFailure = createAction(
   '[Galleries] Fetch Failure',
   props<{error: string}>()
 );

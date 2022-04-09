@@ -2,12 +2,16 @@ import { createReducer, on } from '@ngrx/store';
 import { GalleriesState } from '../types';
 import {
   createGalleryFailure,
-  createGalleryRequest, createGallerySuccess, deleteGalleryFailure, deleteGalleryRequest, deleteGallerySuccess,
+  createGalleryRequest,
+  createGallerySuccess,
+  deleteGalleryFailure,
+  deleteGalleryRequest,
+  deleteGallerySuccess,
   fetchGalleriesFailure,
   fetchGalleriesRequest,
-  fetchGalleriesSuccess, fetchUsersGalleriesFailure, fetchUsersGalleriesRequest,
-  fetchUsersGalleriesSuccess
+  fetchGalleriesSuccess
 } from './galleries.actions';
+
 const initialState: GalleriesState = {
   galleries: [],
   fetchLoading: false,
@@ -31,20 +35,6 @@ export const galleriesReducer = createReducer(
     fetchLoading: false,
     fetchError: error
   })),
-
-  on(fetchUsersGalleriesRequest, state => ({...state, fetchLoading: true})),
-  on(fetchUsersGalleriesSuccess, (state, {galleries}) => ({
-    ...state,
-    fetchLoading: false,
-    galleries
-  })),
-  on(fetchUsersGalleriesFailure, (state, {error}) => ({
-    ...state,
-    fetchLoading: false,
-    fetchError: error
-  })),
-
-
   on(createGalleryRequest, state => ({...state, createLoading: true})),
   on(createGallerySuccess, state => ({...state, createLoading: false})),
   on(createGalleryFailure, (state, {error}) => ({

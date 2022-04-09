@@ -11,9 +11,8 @@
       <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item disabled>{{ (user | async)?.email }}</button>
-      <button mat-menu-item routerLink="/myCocktails">My Cocktails</button>
-      <button mat-menu-item routerLink="/new-cocktail">Add new cocktail</button>
+      <button mat-menu-item disabled>{{ (user | async)?.displayName }}</button>
+      <button mat-menu-item [routerLink]="['galleries/', (user | async)?._id]">My gallery</button>
       <button mat-menu-item (click)="logout()">Logout</button>
     </mat-menu>
   </nav>

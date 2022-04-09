@@ -5,7 +5,6 @@ const { nanoid } = require('nanoid');
 const config = require('../config');
 const auth = require("../middleware/auth");
 const Gallery = require("../models/Gallery");
-
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -21,16 +20,12 @@ const upload = multer({storage});
 
 router.get('/', async (req, res, next) => {
     try {
-        const galleries = await Gallery.find().populate("user", "displayName");
-        return res.send(galleries);
-    } catch (e) {
-        next(e);
-    }
-});
+        const query = {};
+        if (req.query.user) {
+            query.user = req.query.user
+        }
 
-router.get('/:id', async (req, res, next) => {
-    try {
-        const galleries = await Gallery.find({user: req.params.id}).populate("user", "displayName");
+        const galleries = await Gallery.find(query).populate("user");
         return res.send(galleries);
     } catch (e) {
         next(e);

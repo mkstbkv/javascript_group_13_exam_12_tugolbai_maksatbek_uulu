@@ -10,23 +10,8 @@ import { map } from 'rxjs/operators';
 export class GalleriesService {
   constructor(private http: HttpClient) { }
 
-  getGalleries() {
-    return this.http.get<Gallery[]>(environment.apiUrl + '/galleries').pipe(
-      map(response => {
-        return response.map(galleryData => {
-          return new Gallery(
-            galleryData._id,
-            galleryData.user,
-            galleryData.title,
-            galleryData.image,
-          );
-        });
-      })
-    );
-  }
-
-  getUsersGalleries(id: string) {
-    return this.http.get<Gallery[]>(environment.apiUrl + '/galleries/' + id).pipe(
+  getGalleries(id: string) {
+    return this.http.get<Gallery[]>(environment.apiUrl + '/galleries?user=' + id).pipe(
       map(response => {
         return response.map(galleryData => {
           return new Gallery(

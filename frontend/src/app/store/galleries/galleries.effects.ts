@@ -6,11 +6,14 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../types';
 import {
   createGalleryFailure,
-  createGalleryRequest, createGallerySuccess, deleteGalleryFailure, deleteGalleryRequest, deleteGallerySuccess,
+  createGalleryRequest,
+  createGallerySuccess,
+  deleteGalleryFailure,
+  deleteGalleryRequest,
+  deleteGallerySuccess,
   fetchGalleriesFailure,
   fetchGalleriesRequest,
-  fetchGalleriesSuccess, fetchUsersGalleriesFailure,
-  fetchUsersGalleriesRequest, fetchUsersGalleriesSuccess
+  fetchGalleriesSuccess,
 } from './galleries.actions';
 import { GalleriesService } from '../../services/galleries.service';
 
@@ -18,19 +21,9 @@ import { GalleriesService } from '../../services/galleries.service';
 export class GalleriesEffects {
   fetchGalleries = createEffect(() => this.actions.pipe(
     ofType(fetchGalleriesRequest),
-    mergeMap(() => this.galleriesService.getGalleries().pipe(
+    mergeMap(({id}) => this.galleriesService.getGalleries(id).pipe(
       map(galleries => fetchGalleriesSuccess({galleries})),
       catchError(() => of(fetchGalleriesFailure({
-        error: 'Something went wrong'
-      })))
-    ))
-  ));
-
-  fetchUsersGalleries = createEffect(() => this.actions.pipe(
-    ofType(fetchUsersGalleriesRequest),
-    mergeMap(({id}) => this.galleriesService.getUsersGalleries(id).pipe(
-      map(galleries => fetchUsersGalleriesSuccess({galleries})),
-      catchError(() => of(fetchUsersGalleriesFailure({
         error: 'Something went wrong'
       })))
     ))
@@ -50,7 +43,7 @@ export class GalleriesEffects {
     mergeMap(({id, userId}) => this.galleriesService.deleteGallery(id, userId).pipe(
       map(() => deleteGallerySuccess()),
       tap(() => {
-        this.store.dispatch(fetchUsersGalleriesRequest({id: userId}));
+        this.store.dispatch(fetchGalleriesRequest({id: userId}));
       }),
       catchError(() => of(deleteGalleryFailure({error: 'No access!'})))
     ))

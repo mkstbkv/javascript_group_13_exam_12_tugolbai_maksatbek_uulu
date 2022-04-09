@@ -32,6 +32,8 @@ import { ValidateIdenticalDirective } from './validate-identical.directive';
 import { MatInputModule } from '@angular/material/input';
 import { NewPhotoComponent } from './pages/new-photo/new-photo.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { UsersGalleryComponent } from './pages/users-gallery/users-gallery.component';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -58,6 +60,7 @@ const socialConfig: SocialAuthServiceConfig = {
     FileInputComponent,
     ValidateIdenticalDirective,
     NewPhotoComponent,
+    UsersGalleryComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,7 +81,8 @@ const socialConfig: SocialAuthServiceConfig = {
     SocialLoginModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
