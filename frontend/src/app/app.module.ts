@@ -22,8 +22,16 @@ import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthInterceptor } from './auth.interceptor';
-import { FacebookLoginProvider, SocialAuthServiceConfig } from 'angularx-social-login';
+import { FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 import { environment } from '../environments/environment';
+import { MatMenuModule } from '@angular/material/menu';
+import { AppStoreModule } from './store/app-store.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ValidateIdenticalDirective } from './validate-identical.directive';
+import { MatInputModule } from '@angular/material/input';
+import { NewPhotoComponent } from './pages/new-photo/new-photo.component';
+import { MatCardModule } from '@angular/material/card';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -47,7 +55,9 @@ const socialConfig: SocialAuthServiceConfig = {
     LoginComponent,
     ImagePipe,
     UserTypeDirective,
-    FileInputComponent
+    FileInputComponent,
+    ValidateIdenticalDirective,
+    NewPhotoComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +71,14 @@ const socialConfig: SocialAuthServiceConfig = {
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule,
+    AppStoreModule,
+    MatSnackBarModule,
+    SocialLoginModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
