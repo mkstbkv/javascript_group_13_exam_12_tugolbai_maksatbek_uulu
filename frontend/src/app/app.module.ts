@@ -34,6 +34,9 @@ import { NewPhotoComponent } from './pages/new-photo/new-photo.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UsersGalleryComponent } from './pages/users-gallery/users-gallery.component';
+import { UserCheckDirective } from './directives/userCheck.directive';
+import { ModalComponent } from './ui/modal/modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const socialConfig: SocialAuthServiceConfig = {
   autoLogin: false,
@@ -57,10 +60,12 @@ const socialConfig: SocialAuthServiceConfig = {
     LoginComponent,
     ImagePipe,
     UserTypeDirective,
+    UserCheckDirective,
     FileInputComponent,
     ValidateIdenticalDirective,
     NewPhotoComponent,
     UsersGalleryComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +87,8 @@ const socialConfig: SocialAuthServiceConfig = {
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

@@ -1,5 +1,9 @@
-<div fxLayout="row" fxLayoutAlign="space-between flex-start">
-  <h1>{{ userOne.displayName }}'s gallery</h1>
+<div fxLayout="row" fxLayoutAlign="space-between" style="margin-bottom: 15px">
+  <button
+    *userCheck="routId"
+    [routerLink]="['/new-photo']"
+          mat-raised-button color="primary"
+  >Add new photo</button>
 </div>
 
 <div class="error" *ngIf="error | async">
@@ -21,10 +25,22 @@
       *ngFor="let gallery of galleries | async"
     >
       <mat-card style="max-width: 400px">
-        <img mat-card-image [src]="gallery.image  | image" [alt]="'Photo of ' + gallery.title">
+        <img mat-card-image
+             [src]="gallery.image  | image"
+             [alt]="'Photo of ' + gallery.title"
+             (click)="openDialog('http://localhost:8000/uploads/' + gallery.image)"
+        />
         <mat-card-header>
           <mat-card-title>{{ gallery.title }}</mat-card-title>
         </mat-card-header>
+        <mat-card-actions>
+          <a (click)="openDialog('http://localhost:8000/uploads/' + gallery.image)">{{ gallery.title }}</a>
+          <button
+            *userCheck="gallery.user._id"
+            mat-raised-button color="warn"
+            (click)="delete(gallery._id, gallery.user._id)"
+          >Delete</button>
+        </mat-card-actions>
       </mat-card>
     </div>
   </div>

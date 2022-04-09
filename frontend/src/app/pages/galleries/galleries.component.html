@@ -17,9 +17,16 @@
       *ngFor="let gallery of galleries | async"
     >
       <mat-card style="max-width: 400px">
-        <img mat-card-image [src]="gallery.image  | image" [alt]="'Photo of ' + gallery.title">
+        <img mat-card-image
+             [src]="gallery.image  | image"
+             [alt]="'Photo of ' + gallery.title"
+             (click)="openDialog('http://localhost:8000/uploads/' + gallery.image)"
+        />
         <mat-card-header>
-          <mat-card-title>{{ gallery.title }}</mat-card-title>
+          <button mat-raised-button color="accent"
+            (click)="openDialog('http://localhost:8000/uploads/' + gallery.image)">
+            {{ gallery.title }}
+          </button>
         </mat-card-header>
         <mat-card-actions>
           By: <a [routerLink]="['galleries/', gallery.user._id]">{{ gallery.user.displayName }}</a>
