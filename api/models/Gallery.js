@@ -9,11 +9,11 @@ const GallerySchema = new Schema({
     },
     title: {
         type: String,
-        required: true
+        required: true,
     },
     image: {
         type: String,
-        required: true
+        required: true,
     },
 });
 

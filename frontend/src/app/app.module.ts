@@ -28,7 +28,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { AppStoreModule } from './store/app-store.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ValidateIdenticalDirective } from './validate-identical.directive';
+import { ValidateIdenticalDirective } from './directives/validate-identical.directive';
 import { MatInputModule } from '@angular/material/input';
 import { NewPhotoComponent } from './pages/new-photo/new-photo.component';
 import { MatCardModule } from '@angular/material/card';

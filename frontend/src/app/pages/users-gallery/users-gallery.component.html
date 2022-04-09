@@ -32,10 +32,12 @@
              (click)="openDialog('http://localhost:8000/uploads/' + gallery.image)"
         />
         <mat-card-header>
-          <mat-card-title>{{ gallery.title }}</mat-card-title>
+          <button mat-raised-button color="accent"
+                  (click)="openDialog('http://localhost:8000/uploads/' + gallery.image)">
+            {{ gallery.title }}
+          </button>
         </mat-card-header>
         <mat-card-actions>
-          <a (click)="openDialog('http://localhost:8000/uploads/' + gallery.image)">{{ gallery.title }}</a>
           <button
             *userCheck="gallery.user._id"
             mat-raised-button color="warn"
