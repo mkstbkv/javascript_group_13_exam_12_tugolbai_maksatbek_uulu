@@ -16,7 +16,7 @@ const run = async () => {
 
     const [adam, john, jane] = await User.create({
         email: 'adam@gmail.com',
-        password: '321',
+        password: '123',
         displayName: 'Adam',
         token: nanoid(),
     }, {
@@ -33,35 +33,35 @@ const run = async () => {
 
     await Gallery.create({
         user: adam,
-        title: '',
+        title: 'Ярмарки в селе Семеновское славились на всю Костромскую губернию. В воскресный день старинное село красуется во всем...',
         image: '1.jpg',
     }, {
         user: adam,
-        title: '',
+        title: 'Сюжет картины заимствовавн из первой песни "Илиады". Чтобы сильнее подчеркнуть эмоциональность образов, художник пишет Юпитера непомерно огромным...',
         image: '2.jpg',
     }, {
         user: adam,
-        title: '',
+        title: 'Каллисто (Каллиста) - дочь царя Лиокона, спутница Артемиды, родом из Аркадии.',
         image: '3.jpg',
     }, {
         user: john,
-        title: '',
+        title: 'Beautiful nature',
         image: '4.jpg',
     }, {
         user: john,
-        title: '',
+        title: 'Beautiful nature',
         image: '5.jpg',
     }, {
         user: jane,
-        title: '',
+        title: 'Beautiful nature',
         image: '6.jpg',
     }, {
         user: jane,
-        title: '',
+        title: 'Beautiful nature',
         image: '7.jpg',
     }, {
         user: jane,
-        title: '',
+        title: 'Beautiful nature',
         image: '8.jpg',
     });
 

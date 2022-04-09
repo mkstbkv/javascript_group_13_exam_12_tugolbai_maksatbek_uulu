@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.authStateSub = this.auth.authState.subscribe((user: SocialUser) => {
-      console.log(user)
       this.store.dispatch(loginUserWithFacebookRequest({userData: {
           authToken: user.authToken,
           id: user.id,

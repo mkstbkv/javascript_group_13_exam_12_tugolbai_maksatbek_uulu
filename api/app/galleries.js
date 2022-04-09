@@ -59,7 +59,7 @@ router.post('/', auth, upload.single('image'), async (req, res, next) => {
     }
 });
 
-router.delete('/:id', auth, permit('admin'), async (req, res, next) => {
+router.delete('/:id', auth, async (req, res, next) => {
     try {
         const gallery = await Gallery.findById(req.params.id);
         await Gallery.deleteOne(gallery);
